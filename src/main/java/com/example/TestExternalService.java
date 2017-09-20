@@ -11,7 +11,7 @@ import java.util.List;
 /**
  * Created by Elphas Khajira on 9/13/17.
  */
-@Component
+//@Component
 public class TestExternalService implements CommandLineRunner{
 
     private final Logger logger = LoggerFactory.getLogger(getClass());
