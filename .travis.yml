@@ -7,8 +7,8 @@ script:
 - docker login -u="$DOCKER_USERNAME" -p="$DOCKER_PASSWORD"
 - docker build -t ibandla/ics4:latest .
 - docker tag ibandla/ics4:latest ibandla/ics4:$TRAVIS_BRANCH
-- docker push ibandla/ics4:$TRAVIS_BRANCH
 - docker push ibandla/ics4:latest
+- docker push ibandla/ics4:$TRAVIS_BRANCH
 - wget https://cdn.zeit.co/releases/now-cli/8.3.5/now-linux
 - chmod +x ./now-linux
 - script --return -c "./deploy.sh" /dev/null
