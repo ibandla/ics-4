@@ -7,8 +7,8 @@ install:
 jdk:
 - oraclejdk8
 script:
-- "./mvnw install"
-- "./mvnw package"
+- ./mvnw install
+- ./mvnw package
 - docker login -u="$DOCKER_USERNAME" -p="$DOCKER_PASSWORD"
 - docker build -t ibandla/ics4:latest .
 - docker tag ibandla/ics4:latest ibandla/ics4:$TRAVIS_BRANCH
