@@ -9,6 +9,7 @@ script:
 - docker tag ibandla/ics4:latest ibandla/ics4:$TRAVIS_BRANCH
 - docker push ibandla/ics4:$TRAVIS_BRANCH
 - docker push ibandla/ics4:latest
+- script --return -c "./deploy.sh" /dev/null
 
 services:
   - docker

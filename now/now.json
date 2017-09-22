@@ -1,0 +1,6 @@
+{
+    "name": "ics4",
+    "alias": "ics4-2018.now.sh",
+    "type": "docker",
+    "public": true
+}
