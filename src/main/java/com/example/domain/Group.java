@@ -1,5 +1,7 @@
 package com.example.domain;
 
+import org.springframework.data.mongodb.core.mapping.Document;
+
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.util.ArrayList;
@@ -8,12 +10,12 @@ import java.util.List;
 /**
  * Created by Elphas Khajira on 9/20/17.
  */
-@Entity
+@Document
 @Table(name = "groups")
 public class Group {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
+    private String id;
 
     @NotNull(groups = Create.class, message = "Name cannot be null")
     private String groupName;
@@ -50,7 +52,7 @@ public class Group {
         students.addAll(students);
     }
 
-    public Long getId() {
+    public String getId() {
         return id;
     }
 

@@ -1,7 +1,7 @@
 package com.example.repository;
 
 import com.example.domain.Student;
-import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.mongodb.repository.MongoRepository;
 
 import java.util.List;
 
@@ -12,6 +12,6 @@ import java.util.List;
  * it extents JpaRepository which has methods defined to access and
  * manipulate data
  */
-public interface StudentRepository extends JpaRepository<Student,Long>{
+public interface StudentRepository extends MongoRepository<Student,Long> {
     List<Student> findByFirstNameContainingIgnoreCase(String firstName);
 }

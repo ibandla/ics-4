@@ -1,6 +1,7 @@
 package com.example.domain;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import org.springframework.data.mongodb.core.mapping.Document;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
@@ -8,12 +9,12 @@ import javax.validation.constraints.NotNull;
 /**
  * Created by Elphas Khajira on 9/20/17.
  */
-@Entity
+@Document
 @Table(name = "jokes")
 public class Joke {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
+    private String id;
 
     @NotNull(groups = Create.class)
     private String joke;
@@ -39,11 +40,11 @@ public class Joke {
         this.group = group;
     }
 
-    public Long getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(String id) {
         this.id = id;
     }
 

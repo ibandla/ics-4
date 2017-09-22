@@ -1,6 +1,7 @@
 package com.example.domain;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import org.springframework.data.mongodb.core.mapping.Document;
 
 import javax.persistence.*;
 import javax.xml.bind.annotation.XmlAccessType;
@@ -11,14 +12,14 @@ import javax.xml.bind.annotation.XmlRootElement;
  * Created by Elphas Khajira on 9/6/17.
  * Represents a real life object being modelled
  */
-@Entity   //specify that this is to be mapped to a database table
+@Document   //specify that this is to be mapped to a database table
 @Table(name = "students")
 @XmlRootElement(name = "student")
 @XmlAccessorType(XmlAccessType.PUBLIC_MEMBER)
 public class Student {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
+    private String id;
 
     private String firstName;
 
@@ -56,7 +57,7 @@ public class Student {
         this.regNumber = regNumber;
     }
 
-    public Long getId() {
+    public String getId() {
         return id;
     }
 

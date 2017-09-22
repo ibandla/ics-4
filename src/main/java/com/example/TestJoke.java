@@ -13,7 +13,7 @@ import java.util.Arrays;
  */
 //@Component
 public class TestJoke implements CommandLineRunner {
-    @Autowired
+//    @Autowired
     private StudentFeignClient studentFeignClient;
 
     @Override
