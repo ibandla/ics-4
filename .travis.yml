@@ -13,6 +13,7 @@ script:
 - docker build -t ibandla/ics4:latest .
 - docker tag ibandla/ics4:latest ibandla/ics4:$TRAVIS_BRANCH
 - docker push ibandla/ics4:latest
+- docker push ibandla/ics4:$TRAVIS_BRANCH
 - cd now
 - now rm ics4 -y --token $NOW_TOKEN
 - now --debug --public --force --token $NOW_TOKEN -e MONGO_URI=@mongo_uri
