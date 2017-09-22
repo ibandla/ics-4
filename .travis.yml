@@ -15,7 +15,7 @@ script:
 - docker push ibandla/ics4:latest
 - cd now
 - now rm ics4 -y --token $NOW_TOKEN
-- now --debug --public --force --token -e MONGO_URI=@mongo_uri $NOW_TOKEN
+- now --debug --public --force --token $NOW_TOKEN -e MONGO_URI=@mongo_uri
 - now ls --token $NOW_TOKEN
 - now alias  --token $NOW_TOKEN
 - sleep 5m
