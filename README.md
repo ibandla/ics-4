@@ -15,3 +15,18 @@ Click the "Deplot to now" button then fill in the MONGO_URI variable and now tok
 ## How to get free mongodb
 
 Checkout [mlab](http://mlab.com) and [atlas](https://cloud.mongodb.com)
+Then use the mongodb uri that they give it looks like `mongodb://root:password@bar:27017/foo`
+
+## Feign client config
+
+You can use the live version of this project to configure feign
+
+        @FeignClient(url = "https://ics4-2018.now.sh/",name = "ics4feign")
+        public interface StudentFeignClient {
+        
+            @RequestMapping(value = "groups",method = RequestMethod.POST)
+            Group createGroup(@RequestBody Group group);
+        
+            @RequestMapping(value = "{id}/jokes",method = RequestMethod.POST)
+            Joke createJoke(@RequestBody Joke joke);
+        }
