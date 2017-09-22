@@ -2,8 +2,8 @@ language: java
 jdk:
 - oraclejdk8
 script:
-- ./mvn install
-- ./mvn package
+- ./mvnw install
+- ./mvnw package
 env:
   matrix:
     secure: oDiqpcVpr0AdMO2uHcIhvs72h4xpVXwBmEjcuQtHbn07wREtEERzzY18jgmDWKE4if/CvWJlsG5JUIr430aqggRhpGrtbKOpGA1v8I68aHz69xoiMifMl6S5nvwJePs9OxgpBXBc2XGvK5IFb0KueCl6ZT0+uIIkYsHzsorRX6fnekcZ/P2fqPZDpW6f9O/6aAUs3WPj7Ct2caY0vzayBRdEM1OxDUPV0DP3U0qzekPfdKyhCh08YVtEYpWBePa/SSLTKWBRHX7GEeYO2PXjoJt9giF+6h5VJHmZ76s0fU4UKGTdRoTsFY6mPihDZrnddV1D9RJNdje8CSIQ43k4ZvLwYLuryb17uriCdMQ0vVSYq8ziyh9ZiafJOjeokRqCFrIG7dk58edFxJ/uEJF5OoeMWKeLvbskT/M9cPTGaRFG8kJGz73yp0O7c+LqOytUzgR8R5QPeSm2cGptxs97YdaUv1FeOYRH6d6av3IuWrJ8vzA71LZ4yGyKspWjTEBbbDhadrNmIMXQufzPuWwYHBjVLluE12i1x4WzToGx26LTvo3YyyT5L0zN+hxqAsYfpQXcdN+SHsxHzzvuX9CqOoPmeqQEon6zlRoZF5bcltV0/wGd+Lh9u4u6aDBY1ly4qwt3MxEPk4eXinLlWKm0/SdGN40JzDEws80MoMuwc/A=
