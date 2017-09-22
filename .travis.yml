@@ -1,36 +1,33 @@
-matrix:
-  include:
-    - language: java
-      jdk: oraclejdk8
-      script:
-      - "./mvnw install"
-      - "./mvnw package"
-      - docker login -u="$DOCKER_USERNAME" -p="$DOCKER_PASSWORD"
-      - docker build -t ibandla/ics4:latest .
-      - docker tag ibandla/ics4:latest ibandla/ics4:$TRAVIS_BRANCH
-      - docker push ibandla/ics4:latest
-      - docker push ibandla/ics4:$TRAVIS_BRANCH
-      services:
-        - docker
-    - language: node_js
-      node_js:
-        - "7"
-      before_script:
-      - npm install -g now
-      script:
-      - now rm ics4 -y --token $NOW_TOKEN
-      - now --debug --public --force --token $NOW_TOKEN
-      - now ls --token $NOW_TOKEN
-      - now alias  --token $NOW_TOKEN
-      - now scale ics4-2018.now.sh 1 --token $NOW_TOKEN
+language: java
+install:
+  - . $HOME/.nvm/nvm.sh
+  - nvm install stable
+  - nvm use stable
+  - npm install -g now
+jdk:
+- oraclejdk8
+script:
+- "./mvnw install"
+- "./mvnw package"
+- docker login -u="$DOCKER_USERNAME" -p="$DOCKER_PASSWORD"
+- docker build -t ibandla/ics4:latest .
+- docker tag ibandla/ics4:latest ibandla/ics4:$TRAVIS_BRANCH
+- docker push ibandla/ics4:latest
+- cd now
+- now rm ics4 -y --token $NOW_TOKEN
+- now --debug --public --force --token $NOW_TOKEN
+- now ls --token $NOW_TOKEN
+- now alias  --token $NOW_TOKEN
+- now scale ics4-2018.now.sh 1 --token $NOW_TOKEN
+services:
+  - docker
+deploy:
+  provider: releases
+  api_key:
+    secure: UqWWN1/G3e6MN39hm7zgtDEeBNvzEEMpf+GHpTIZR/v8duuVGKBKWhqMjPtPI2cjzqHY+brNz9/yndF1X/KWJ62Z+C/fcONCWAkbecNCYFU2k8MaWDgOdRNjiv9a8N7edh0PEvQjE2W5nlzt9Z8ljn2HEcRcNtyV1JhIAcGZeAnwsPYKJh/cjGvJCD5LpCH5Qee1p0ISeiYBZJB1g0QZ6SRZN6YBI8+Md4HF2oy6LgLLgyBmXSmxaRbUEnF8QsN528T2Yu70EI0tVtXyoc1MlgbMuJIPjvlOyBeZYl9UrEdEGs8ggst+4LCxAL73jxqFsSvZtQkpSEGD0dpsqEo1cylWIfaz4MvHTXj8n+UhbOP8J+2gMCTkcbndLu9SiRWsQP7rWmha7UMnMNIgbVwv2Vo8uT4Vrn3ZoRW1TAF+PXg5gzmazHw+BFGc0ax2xChP0G6OfOzUoY8sxs0TuPTzdbd4bxebKj5+hRRRf6A2laMg2YNOosndOyZ/cWQjmHAYegcm5w8R4hImDwSw0jsE+gysD85wLw1I7oP6MTlBUhMylJ86XuWHAfi3LVZNjJHmpVCWKND4225h06/9CHHvORcz9IhdZXifJKuUbdsNFYUxsHwObO3v45GDCswFVuofXlG5uRw0FXtJ6Fd7FpI5G8gTmjnyaP3AIk8wfERchns=
+  file: target/ics4-*.jar
+  overwrite: true
 
-    deploy:
-      provider: releases
-      api_key:
-        secure: UqWWN1/G3e6MN39hm7zgtDEeBNvzEEMpf+GHpTIZR/v8duuVGKBKWhqMjPtPI2cjzqHY+brNz9/yndF1X/KWJ62Z+C/fcONCWAkbecNCYFU2k8MaWDgOdRNjiv9a8N7edh0PEvQjE2W5nlzt9Z8ljn2HEcRcNtyV1JhIAcGZeAnwsPYKJh/cjGvJCD5LpCH5Qee1p0ISeiYBZJB1g0QZ6SRZN6YBI8+Md4HF2oy6LgLLgyBmXSmxaRbUEnF8QsN528T2Yu70EI0tVtXyoc1MlgbMuJIPjvlOyBeZYl9UrEdEGs8ggst+4LCxAL73jxqFsSvZtQkpSEGD0dpsqEo1cylWIfaz4MvHTXj8n+UhbOP8J+2gMCTkcbndLu9SiRWsQP7rWmha7UMnMNIgbVwv2Vo8uT4Vrn3ZoRW1TAF+PXg5gzmazHw+BFGc0ax2xChP0G6OfOzUoY8sxs0TuPTzdbd4bxebKj5+hRRRf6A2laMg2YNOosndOyZ/cWQjmHAYegcm5w8R4hImDwSw0jsE+gysD85wLw1I7oP6MTlBUhMylJ86XuWHAfi3LVZNjJHmpVCWKND4225h06/9CHHvORcz9IhdZXifJKuUbdsNFYUxsHwObO3v45GDCswFVuofXlG5uRw0FXtJ6Fd7FpI5G8gTmjnyaP3AIk8wfERchns=
-      file: target/ics4-*.jar
-      overwrite: true
-
-      on:
-        repo: ibandla/ics-4
-        tags: true
+  on:
+    repo: ibandla/ics-4
+    tags: true
