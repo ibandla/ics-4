@@ -23,15 +23,12 @@ script:
 - now scale ics4-2018.now.sh 1 --token $NOW_TOKEN
 services:
   - docker
-before_deploy:
-  - export RELEASE_PKG_FILE=$(ls target/ics4-*.jar)
-  - echo "deploying $RELEASE_PKG_FILE to GitHub releases"
 deploy:
   provider: releases
   api_key:
     secure: UqWWN1/G3e6MN39hm7zgtDEeBNvzEEMpf+GHpTIZR/v8duuVGKBKWhqMjPtPI2cjzqHY+brNz9/yndF1X/KWJ62Z+C/fcONCWAkbecNCYFU2k8MaWDgOdRNjiv9a8N7edh0PEvQjE2W5nlzt9Z8ljn2HEcRcNtyV1JhIAcGZeAnwsPYKJh/cjGvJCD5LpCH5Qee1p0ISeiYBZJB1g0QZ6SRZN6YBI8+Md4HF2oy6LgLLgyBmXSmxaRbUEnF8QsN528T2Yu70EI0tVtXyoc1MlgbMuJIPjvlOyBeZYl9UrEdEGs8ggst+4LCxAL73jxqFsSvZtQkpSEGD0dpsqEo1cylWIfaz4MvHTXj8n+UhbOP8J+2gMCTkcbndLu9SiRWsQP7rWmha7UMnMNIgbVwv2Vo8uT4Vrn3ZoRW1TAF+PXg5gzmazHw+BFGc0ax2xChP0G6OfOzUoY8sxs0TuPTzdbd4bxebKj5+hRRRf6A2laMg2YNOosndOyZ/cWQjmHAYegcm5w8R4hImDwSw0jsE+gysD85wLw1I7oP6MTlBUhMylJ86XuWHAfi3LVZNjJHmpVCWKND4225h06/9CHHvORcz9IhdZXifJKuUbdsNFYUxsHwObO3v45GDCswFVuofXlG5uRw0FXtJ6Fd7FpI5G8gTmjnyaP3AIk8wfERchns=
+  file: target/ics4-*.jar
   file_glob: true
-  file: "${RELEASE_PKG_FILE}"
   overwrite: true
 
   on:
