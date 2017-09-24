@@ -8,6 +8,6 @@ import java.util.Optional;
 /**
  * Created by Elphas Khajira on 9/20/17.
  */
-public interface GroupRepository extends MongoRepository<Group,Long> {
-    Optional<Group> findById(Long id);
+public interface GroupRepository extends MongoRepository<Group,String> {
+    Optional<Group> findById(String id);
 }

@@ -38,16 +38,22 @@ public class GroupController {
     public Group createGroup(@RequestBody @Validated(Group.Create.class) Group group) {
        List<Student> students= studentRepository.save(group.getStudents());
         Group savedGroup = groupRepository.save(group);
-        group.getStudents().forEach(student -> {
-            student.setGroup(savedGroup);
+        students.forEach(student -> {
+//            student.setFirstName(student.getFirstName());
+//            student.setLastName(student.getLastName());
+//            student.setRegNumber(student.getRegNumber());
+//
+//            student.setGroup(savedGroup);
             studentRepository.save(student);
         });
+
+
 
         return group;
     }
 
     @GetMapping(value ="{id}")
-    public Group findById(@PathVariable Long id){
+    public Group findById(@PathVariable String id){
         Optional<Group> group= groupRepository.findById(id);
         if (group.isPresent())
             return group.get();
@@ -58,13 +64,15 @@ public class GroupController {
 
     @PostMapping(value = "{groupId}/jokes")
     public Joke createJoke(@RequestBody @Validated(Joke.Create.class) Joke joke,
-                           @PathVariable Long groupId){
+                           @PathVariable String groupId){
         Optional<Group> group= groupRepository.findById(groupId);
         if (group.isPresent()) {
-            joke.setGroup(group.get());
+//
 
              Joke savedJoke=jokeRepository.save(joke);
             group.get().addJoke(savedJoke);
+//            joke.setGroup(group.get());
+//            jokeRepository.save(joke);
             groupRepository.save(group.get());
             return joke;
         }
@@ -72,7 +80,15 @@ public class GroupController {
             throw new NotFoundException("Group not found");
     }
 
+    @GetMapping(value = "{groupId}/jokes")
+    public  List<Joke> findJokesByGroupId( @PathVariable String groupId){
+        Optional<Group> group= groupRepository.findById(groupId);
 
-
+        if (group.isPresent()) {
+           return group.get().getJokes();
+        }
+        else
+            throw new NotFoundException("Group not found");
+    }
 
 }
