@@ -52,6 +52,12 @@ public class GroupController {
         return group;
     }
 
+    @GetMapping
+    public List<Group> findAll(){
+        return groupRepository.findAll();
+    }
+
+
     @GetMapping(value ="{id}")
     public Group findById(@PathVariable String id){
         Optional<Group> group= groupRepository.findById(id);
