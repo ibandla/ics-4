@@ -1,1 +1,1 @@
-FROM ibandla/ics4:latest
+FROM ibandla/ics4:master
