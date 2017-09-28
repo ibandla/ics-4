@@ -36,6 +36,7 @@ public class GroupController {
 
     @PostMapping
     public Group createGroup(@RequestBody @Validated(Group.Create.class) Group group) {
+
        List<Student> students= studentRepository.save(group.getStudents());
         Group savedGroup = groupRepository.save(group);
         students.forEach(student -> {
@@ -51,6 +52,12 @@ public class GroupController {
 
         return group;
     }
+
+    @GetMapping
+    public List<Group> findAll(){
+        return groupRepository.findAll();
+    }
+
 
     @GetMapping(value ="{id}")
     public Group findById(@PathVariable String id){
