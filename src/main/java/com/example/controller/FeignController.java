@@ -41,7 +41,7 @@ public class FeignController {
        Group newGroup =  studentFeignClient.createGroup(group);
 
 
-        groupRepository.save(newGroup);
+//        groupRepository.save(newGroup);
         String id = newGroup.getId();
         return  id;
 
@@ -51,6 +51,9 @@ public class FeignController {
     @PostMapping(value = "{groupId}/jokes")
     public String createJoke(@RequestBody @Validated(Joke.Create.class) Joke joke,
                              @PathVariable String groupId) {
+
+        joke = new Joke();
+        joke.setJoke("sdfas");
 
         Joke newJoke = studentFeignClient.createJoke(joke, groupId);
         jokeRepository.save(newJoke);

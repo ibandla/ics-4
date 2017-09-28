@@ -1,6 +1,7 @@
 package com.example;
 
 import com.example.domain.Group;
+import com.example.domain.Joke;
 import com.example.domain.Student;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
@@ -24,6 +25,11 @@ public class TestJoke implements CommandLineRunner {
                 new Student("Joseph","Khajira",98L),
                 new Student("Ken","Khajira",38L),
                 new Student("Wafula","Khajira",18L)*/);
-        studentFeignClient.createGroup(group);
+
+        Joke joke = new Joke();
+        joke.setJoke("hah!");
+        Group newGroup =  studentFeignClient.createGroup(group);
+        studentFeignClient.createJoke(joke,newGroup.getId());
+
     }
 }
