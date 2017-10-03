@@ -4,12 +4,16 @@ package com.example.controller;
 import com.example.StudentFeignClient;
 import com.example.domain.Group;
 import com.example.domain.Joke;
+import com.example.models.Me;
 import com.example.repository.GroupRepository;
 import com.example.repository.JokeRepository;
 import com.google.gson.Gson;
 import org.springframework.http.MediaType;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by clive on 26/09/17.
@@ -38,7 +42,7 @@ public class FeignController {
 
         Group group = new Gson().fromJson(payload, Group.class);
 
-       Group newGroup =  studentFeignClient.createGroup(group);
+        Group newGroup =  studentFeignClient.createGroup(group);
 
 
 //        groupRepository.save(newGroup);
@@ -62,6 +66,47 @@ public class FeignController {
 
 
     }
+
+    @GetMapping(value = "register")
+    public Me register() {
+        Me first = new Me();
+        first.setfullName("Clive Makamara");
+        first.setadmissionNumber(82816);
+        Me second = studentFeignClient.createMe(first);
+
+        return  second;
+
+    }
+
+
+    @GetMapping(value = "calculate/{id}")
+    public Double calculate( @PathVariable("id") String id) {
+        List<Double> l = new ArrayList<>();
+        l.add(121.1);
+        l.add(122.4);
+
+        Double answer = studentFeignClient.calculate(l,id,"Multiply");
+
+        return  answer;
+
+
+    }
+
+
+    @GetMapping(value = "validate/{answer}/{id}")
+    public Double    validate( @PathVariable("id") String id, @PathVariable("answer") Double answer) {
+        List<Double> l = new ArrayList<>();
+        l.add(121.1);
+        l.add(122.4);
+       studentFeignClient.validate(l,id,answer);
+
+        return  answer;
+
+
+    }
+
+
+
 
 
 
