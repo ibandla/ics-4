@@ -29,7 +29,7 @@ public class Me implements Serializable
     }
 
     @JsonProperty("fullName")
-    public void setfullName(String fullName) {
+    public void setFullName(String fullName) {
         this.fullName = fullName;
     }
 

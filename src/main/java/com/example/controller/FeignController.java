@@ -70,7 +70,7 @@ public class FeignController {
     @GetMapping(value = "register")
     public Me register() {
         Me first = new Me();
-        first.setfullName("Clive Makamara");
+        first.setFullName("Clive Makamara");
         first.setadmissionNumber(82816);
         Me second = studentFeignClient.createMe(first);
 
